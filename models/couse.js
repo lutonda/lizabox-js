@@ -3,13 +3,19 @@ var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
 const CourseSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     description: {
-        type: String,
-        unique: true
+        type: String
     },
     chapters: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chapter'
+    }],
+    category: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CourseCategory'
     }]
 
 })
