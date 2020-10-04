@@ -1,29 +1,29 @@
-var Course = require('../models/course');
+var Task = require('../models/task');
 
 exports.create = async(req, res) => {
 
-    let course = await Course.create(req.body);
+    let task = await Task.create(req.body);
 
     res.json({
         status: 200,
         message: "success",
-        data: course
+        data: task
     })
 }
 
 
 exports.update = async(req, res) => {
 
-    let course = await Course.findById(req.params.id, (err, course) => {
+    let task = await Task.findById(req.params.id, (err, task) => {
 
-        course.description = req.body.description;
-        course.name = req.body.name;
-        course.save();
+        task.description = req.body.description;
+        task.name = req.body.name;
+        task.save();
 
         res.json({
             status: 200,
             message: "sucess",
-            data: course || err
+            data: task || err
         });
 
     });
@@ -31,7 +31,7 @@ exports.update = async(req, res) => {
 
 exports.findOneBy = async(req, res) => {
 
-    await Course.findById(req.params.id, (err, data) => {
+    await Task.findById(req.params.id, (err, data) => {
 
         res.json({
             status: 200,
@@ -43,20 +43,20 @@ exports.findOneBy = async(req, res) => {
 }
 
 exports.findAllBy = async(req, res) => {
-    let courses = await Course.find();
+    let tasks = await Task.find();
 
     res.json({
         status: 200,
         message: "success",
-        data: courses
+        data: tasks
     })
 }
 
 exports.delete = async(req, res) => {
 
-    let course = await Course.findById(req.params.id, (err, data) => {
+    let task = await Task.findById(req.params.id, (err, data) => {
 
-        course.remove()
+        task.remove()
 
         res.json({
             status: 200,

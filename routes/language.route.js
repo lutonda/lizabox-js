@@ -1,10 +1,10 @@
 var route = require('express').Router();
-var controller = require('../controllers/language.controller');
+var controller = require('../controllers/course.controller');
 
 route.get('/', controller.findAllBy);
 route.get('/:id', controller.findOneBy);
-route.post('/new', controller.createOne);
-route.post('/update/:id', controller.updateOne);
-route.delete('/:id', controller.deleteOne);
+route.post('/update/:id', controller.update);
+route.delete('/delete/:id', controller.delete);
+route.post('/create', controller.create);
 
 module.exports = route;

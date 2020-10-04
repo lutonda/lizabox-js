@@ -1,7 +1,7 @@
 var Chapter = require('../models/chapter');
 
 
-exports.createOne = async(req, res) => {
+exports.create = async(req, res) => {
 
     let chapter = await Chapter.create(req.body);
 
@@ -13,7 +13,7 @@ exports.createOne = async(req, res) => {
 }
 
 
-exports.upadateOne = async(req, res) => {
+exports.update = async(req, res) => {
 
     let chapter = await Chapter.findById(req.params.id, (err, chapter) => {
 
@@ -44,16 +44,16 @@ exports.findOneBy = async(req, res) => {
 }
 
 exports.findAllBy = async(req, res) => {
-    let authors = await Chapter.find();
+    let chapters = await Chapter.find();
 
     res.json({
         status: 200,
         message: "success",
-        data: authors
+        data: chapters
     })
 }
 
-exports.deleteOne = async(req, res) => {
+exports.delete = async(req, res) => {
 
     let chapter = await Chapter.findById(req.params.id, (err, data) => {
 

@@ -1,5 +1,5 @@
 var route = require('express').Router();
-var controller = require('../controllers/user.controller');
+var controller = require('../controllers/typeTask.controller');
 
 route.get('/', controller.findAllBy);
 route.get('/:id', controller.findOneBy);

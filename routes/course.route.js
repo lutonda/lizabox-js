@@ -1,9 +1,9 @@
 var route = require('express').Router();
-var controller = require('../controllers/user.controller');
+var controller = require('../controllers/course.controller');
 
 route.get('/', controller.findAllBy);
 route.get('/:id', controller.findOneBy);
-route.post('/update/:id', controller.update);
+route.put('/update/:id', controller.update);
 route.delete('/delete/:id', controller.delete);
 route.post('/create', controller.create);
 

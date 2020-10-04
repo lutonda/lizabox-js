@@ -1,29 +1,29 @@
-var Course = require('../models/course');
+var TypeTask = require('../models/typeTask');
 
 exports.create = async(req, res) => {
 
-    let course = await Course.create(req.body);
+    let typeTask = await TypeTask.create(req.body);
 
     res.json({
         status: 200,
         message: "success",
-        data: course
+        data: typeTask
     })
 }
 
 
 exports.update = async(req, res) => {
 
-    let course = await Course.findById(req.params.id, (err, course) => {
+    let typeTask = await TypeTask.findById(req.params.id, (err, typeTask) => {
 
-        course.description = req.body.description;
-        course.name = req.body.name;
-        course.save();
+        typeTask.description = req.body.description;
+        typeTask.name = req.body.name;
+        typeTask.save();
 
         res.json({
             status: 200,
             message: "sucess",
-            data: course || err
+            data: typeTask || err
         });
 
     });
@@ -31,7 +31,7 @@ exports.update = async(req, res) => {
 
 exports.findOneBy = async(req, res) => {
 
-    await Course.findById(req.params.id, (err, data) => {
+    await TypeTask.findById(req.params.id, (err, data) => {
 
         res.json({
             status: 200,
@@ -43,20 +43,20 @@ exports.findOneBy = async(req, res) => {
 }
 
 exports.findAllBy = async(req, res) => {
-    let courses = await Course.find();
+    let typeTasks = await TypeTask.find();
 
     res.json({
         status: 200,
         message: "success",
-        data: courses
+        data: typeTasks
     })
 }
 
 exports.delete = async(req, res) => {
 
-    let course = await Course.findById(req.params.id, (err, data) => {
+    let typeTask = await TypeTask.findById(req.params.id, (err, data) => {
 
-        course.remove()
+        typeTask.remove()
 
         res.json({
             status: 200,

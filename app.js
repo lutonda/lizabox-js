@@ -3,11 +3,11 @@ var express = require('express'),
     middleware = require('./config/middleware'),
     mongoose = require('mongoose'),
     express = require('express'),
-    { google } = require('googleapis'),
+    //  { google } = require('googleapis'),
     cors = require('cors'),
     bodyParser = require('body-parser');
 // routes
-var mainRoute = require('./routes/main.route');
+var mainRoute = require('./routes/route');
 const fs = require('fs');
 
 const TOKEN_PATH = './config/token.json';
@@ -25,6 +25,8 @@ var server = require("http").Server(app);
 app.use(cors())
 app.use(bodyParser.json({ limit: '10mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
+app.use(bodyParser.json());
+/*
 app.get('/google/calback', (req, res) => {
     const code = req.locaquery.code;
     const credencials = require('./config/credentials.json');
@@ -47,8 +49,7 @@ app.get('/google/calback', (req, res) => {
         }
 
     });
-})
-app.use(bodyParser.json());
+})*/
 
 app.use('/api/v1/', middleware.checkToken, mainRoute);
 
