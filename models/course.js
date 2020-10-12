@@ -9,14 +9,43 @@ const CourseSchema = new mongoose.Schema({
     description: {
         type: String
     },
+    coverPic: {
+        type: String
+    },
+    blog: {
+        type: String
+    },
     chapters: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chapter'
     }],
-    category: [{
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CourseCategory'
-    }]
+    },
+    tags: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tag'
+    }],
+    isPublished: {
+        type: Boolean,
+        default: false
+    },
+    dueDate: {
+        type: Date
+    },
+
+
+    //Default fields
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    date: {
+        type: Date,
+        default: new Date()
+    }
+
 
 })
 

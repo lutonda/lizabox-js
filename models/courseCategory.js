@@ -4,6 +4,9 @@ const uuidv5 = require("uuid/v5");
 
 const CourseCategorySchema = new mongoose.Schema({
     description: {
+        type: String
+    },
+    name: {
         type: String,
         unique: true
     },
@@ -15,4 +18,4 @@ const CourseCategorySchema = new mongoose.Schema({
 })
 
 
-var CourseCategory = (module.exports = mongoose.model("CourseCategory", TaskSchema));
+var CourseCategory = (module.exports = mongoose.model("CourseCategory", CourseCategorySchema));

@@ -3,9 +3,11 @@ var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
 const TypeTaskSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     description: {
-        type: String,
-        unique: true
+        type: String
     },
     tasks: [{
         type: mongoose.Schema.Types.ObjectId,

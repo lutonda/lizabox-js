@@ -1,8 +1,14 @@
 var Task = require('../models/task');
+var Chapter = require('../models/chapter');
+var TypeTask = require('../models/typeTask');
 
 exports.create = async(req, res) => {
 
+    req.body.type = await TypeTask.findById(req.body.type._id);
+    req.body.chapter = await Chapter.findById(req.body.chapter._id);
     let task = await Task.create(req.body);
+    req.body.chapter.tasks.push(task);
+    req.body.chapter.tasks.save()
 
     res.json({
         status: 200,
@@ -31,15 +37,15 @@ exports.update = async(req, res) => {
 
 exports.findOneBy = async(req, res) => {
 
-    await Task.findById(req.params.id, (err, data) => {
+    let task = await Task.findById(req.params.id);
 
-        res.json({
-            status: 200,
-            message: "sucess",
-            data: data || err
-        });
-
+    res.json({
+        status: 200,
+        message: "sucess",
+        data: task
     });
+
+
 }
 
 exports.findAllBy = async(req, res) => {
