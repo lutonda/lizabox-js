@@ -26,30 +26,32 @@ app.use(cors())
 app.use(bodyParser.json({ limit: '10mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 app.use(bodyParser.json());
-/*
-app.get('/google/calback', (req, res) => {
-    const code = req.locaquery.code;
-    const credencials = require('./config/credentials.json');
+app.use(express.static('public'))
+app.use(express.static('files'))
+    /*
+    app.get('/google/calback', (req, res) => {
+        const code = req.locaquery.code;
+        const credencials = require('./config/credentials.json');
 
-    const { client_secret, client_id, redirect_uris } = credencials.web;
-    const oAuth2Client = new google.auth.OAuth2(
-        client_id, client_secret, redirect_uris[0]);
+        const { client_secret, client_id, redirect_uris } = credencials.web;
+        const oAuth2Client = new google.auth.OAuth2(
+            client_id, client_secret, redirect_uris[0]);
 
-    oAuth2Client.getToken(code, (err, token) => {
-        if (err) return console.log('Error retrieving access token', err);
-        oAuth2Client.setCredentials(token);
-        // Store the token to disk for later program executions
-        try {
-            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-                if (err) return console.error(err);
-                console.log('Token stored to', TOKEN_PATH);
-            });
-        } catch (e) {
-            let i = e;
-        }
+        oAuth2Client.getToken(code, (err, token) => {
+            if (err) return console.log('Error retrieving access token', err);
+            oAuth2Client.setCredentials(token);
+            // Store the token to disk for later program executions
+            try {
+                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                    if (err) return console.error(err);
+                    console.log('Token stored to', TOKEN_PATH);
+                });
+            } catch (e) {
+                let i = e;
+            }
 
-    });
-})*/
+        });
+    })*/
 
 app.use('/api/v1/', middleware.checkToken, mainRoute);
 

@@ -14,9 +14,13 @@ const TaskSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
+    order: {
+        type: Number
+    },
     chapter: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chapter'
+        ref: 'Chapter',
+        autopopulate: true
     },
     type: {
         type: mongoose.Schema.Types.ObjectId,
@@ -24,6 +28,8 @@ const TaskSchema = new mongoose.Schema({
         autopopulate: true
     }
 
+}, {
+    timestamps: true
 })
 
 

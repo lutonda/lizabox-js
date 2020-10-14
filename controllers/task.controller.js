@@ -8,7 +8,7 @@ exports.create = async(req, res) => {
     req.body.chapter = await Chapter.findById(req.body.chapter._id);
     let task = await Task.create(req.body);
     req.body.chapter.tasks.push(task);
-    req.body.chapter.tasks.save()
+    req.body.chapter.save()
 
     res.json({
         status: 200,
@@ -37,7 +37,7 @@ exports.update = async(req, res) => {
 
 exports.findOneBy = async(req, res) => {
 
-    let task = await Task.findById(req.params.id);
+    let task = await Task.findById(req.params.id).populate('chapter');
 
     res.json({
         status: 200,

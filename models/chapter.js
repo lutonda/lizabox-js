@@ -18,8 +18,11 @@ const ChapterSchema = new mongoose.Schema({
     }],
     course: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Course'
+        ref: 'Course',
+        autopopulate: true
     }
+}, {
+    timestamps: true
 })
 
 ChapterSchema.plugin(require('mongoose-autopopulate'));
