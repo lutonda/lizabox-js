@@ -2,36 +2,34 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
+const findOrCreate = require('mongoose-find-or-create')
 const UserSchema = new mongoose.Schema({
-
-    name: {
-        type: String
-    },
     email: {
-        type: String,
-        unique: true
-    },
-    telephone: {
         type: String,
         unique: true
     },
     apikey: {
         type: String,
-        unique: false,
         default:parseInt(Math.random()%100)
     },
-    isActive: {
-        type: Boolean,
-        default: true
+    service: {
+        type: String
     },
-    date: {
-        type: Date,
-        default: Date.now
+    people: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'People',
+        autopopulate: true
     },
     isAdmin: {
         type: Boolean,
         default:false
+    },
+    isActive: {
+        type: Boolean,
+        default: true
     }
+}, {
+    timestamps: true
 });
-
+UserSchema.plugin(findOrCreate)
 var User = (module.exports = mongoose.model("User", UserSchema));

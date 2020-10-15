@@ -12,6 +12,8 @@ const fs = require('fs');
 
 const TOKEN_PATH = './config/token.json';
 //sect the mongoo connection string from config
+
+mongoose.set('useFindAndModify', false);
 mongoose.connect(config.development, (err) => {
     let t = err;
 });

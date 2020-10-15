@@ -3,25 +3,31 @@ var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
 const AssociationSchema = new mongoose.Schema({
-    name: {
-        type: String
-    },
     description: {
         type: String
     },
     role: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Role'
+        ref: 'Role',
+        required:true
     },
     people: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'People'
+        ref: 'People',
+        required:true
     },
     course: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Course'
-    }
+        ref: 'Course',
+        required:true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
 
+}, {
+    timestamps: true
 })
 
 

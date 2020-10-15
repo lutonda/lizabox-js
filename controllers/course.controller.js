@@ -47,7 +47,16 @@ exports.update = async (req, res) => {
 
 exports.findOneBy = async (req, res) => {
 
-    let course = await Course.findById(req.params.id).populate('chapters').populate('chapters.tasks');
+    let course = await Course.findById(req.params.id)
+        .populate('chapters')
+        //.populate('associations')
+        .populate({
+            path: 'associations',
+            // Get friends of friends - populate the 'friends' array for every friend
+            populate: { path: 'people role' }
+        })
+        .populate('chapters.tasks');
+        
     course.coverPic='http://127.0.0.1:8800/uploads/courses/' + course.code + '/cover.jpg'
     res.json({
         status: 200,

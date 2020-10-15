@@ -4,7 +4,8 @@ const uuidv5 = require("uuid/v5");
 
 const RoleSchema = new mongoose.Schema({
     name: {
-        type: String
+        type: String,
+        required:true
     },
     description: {
         type: String
