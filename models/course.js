@@ -33,6 +33,11 @@ const CourseSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chapter'
     }],
+    associations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Association',
+        autopopulate: true
+    }],
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CourseCategory'
